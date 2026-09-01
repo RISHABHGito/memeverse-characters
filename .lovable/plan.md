@@ -22,7 +22,7 @@ Hybrid ranking, run server-side, blending three signals:
 
 Final score = weighted blend of the three, computed in one SQL function so results come back fast. Search results show a top "character match" block first, then individual memes.
 
-Aliases are first-class: admins attach any number of nicknames/spellings to a character, and those feed both the lexical index and the embedding text.
+Aliases and tags are first-class: admins attach nicknames/spellings to a character, and users can suggest more when submitting a meme. A suggested tag starts as "pending" — once enough distinct users suggest the same tag for the same character (or an admin approves it in one click), it is promoted and immediately feeds the lexical index and the character's embedding text. This is how the search index keeps improving without admin effort.
 
 ## Data model
 
