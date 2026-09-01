@@ -8,7 +8,7 @@ A browsing app where every meme belongs to a CHARACTER (real or fictional) that 
 2. **Search** — the centerpiece. Type a character name, nickname, or even a description ("angry office guy meme") and get the right character plus their memes.
 3. **Character profile** — avatar, bio, tags, follower/fan count, meme grid, "follow" button.
 4. **Meme player** — tap a meme, it opens in a floating PiP player (draggable, minimizable) so browsing continues while it plays.
-5. **Submit a meme** — signed-in users paste a link, pick an existing character, add tags. Goes to a moderation queue.
+5. **Submit a meme** — signed-in users paste a link, pick an existing character, and add tags. Tags apply to both the meme and the character: a submitter can suggest character tags/nicknames (e.g. "angry boss", "hera pheri", "babu bhaiya") right from the submit form, so admins don't have to enrich every character by hand. Goes to a moderation queue.
 6. **Auth** — email/password + Google sign-in, with user profiles (username, avatar).
 7. **Admin panel** — create/edit characters (only admins can), approve or reject submitted memes, merge duplicates.
 
@@ -22,7 +22,7 @@ Hybrid ranking, run server-side, blending three signals:
 
 Final score = weighted blend of the three, computed in one SQL function so results come back fast. Search results show a top "character match" block first, then individual memes.
 
-Aliases are first-class: admins attach any number of nicknames/spellings to a character, and those feed both the lexical index and the embedding text.
+Aliases and tags are first-class: admins attach nicknames/spellings to a character, and users can suggest more when submitting a meme. A suggested tag starts as "pending" — once enough distinct users suggest the same tag for the same character (or an admin approves it in one click), it is promoted and immediately feeds the lexical index and the character's embedding text. This is how the search index keeps improving without admin effort.
 
 ## Data model
 
@@ -30,6 +30,7 @@ Aliases are first-class: admins attach any number of nicknames/spellings to a ch
 - `user_roles` — separate roles table (`admin`, `user`) with a security-definer `has_role()` check
 - `characters` — name, slug, bio, avatar, origin, category, is_fictional, popularity score, search vector, embedding
 - `character_aliases` — many nicknames per character
+- `character_tag_suggestions` — user-submitted tags/nicknames for a character with suggester, vote count, and status (pending/approved/rejected); approved rows roll into the character's alias + tag set and trigger a re-embed
 - `memes` — source_url, platform (youtube/instagram/x), external_id, title, thumbnail, character_id, submitted_by, status (pending/approved/rejected), tags, search vector, embedding
 - `meme_interactions` — likes/saves/views used for ranking
 - `character_follows` — user follows a character
