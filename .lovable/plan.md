@@ -30,6 +30,7 @@ Aliases and tags are first-class: admins attach nicknames/spellings to a charact
 - `user_roles` — separate roles table (`admin`, `user`) with a security-definer `has_role()` check
 - `characters` — name, slug, bio, avatar, origin, category, is_fictional, popularity score, search vector, embedding
 - `character_aliases` — many nicknames per character
+- `character_tag_suggestions` — user-submitted tags/nicknames for a character with suggester, vote count, and status (pending/approved/rejected); approved rows roll into the character's alias + tag set and trigger a re-embed
 - `memes` — source_url, platform (youtube/instagram/x), external_id, title, thumbnail, character_id, submitted_by, status (pending/approved/rejected), tags, search vector, embedding
 - `meme_interactions` — likes/saves/views used for ranking
 - `character_follows` — user follows a character
