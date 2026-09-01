@@ -8,7 +8,7 @@ A browsing app where every meme belongs to a CHARACTER (real or fictional) that 
 2. **Search** — the centerpiece. Type a character name, nickname, or even a description ("angry office guy meme") and get the right character plus their memes.
 3. **Character profile** — avatar, bio, tags, follower/fan count, meme grid, "follow" button.
 4. **Meme player** — tap a meme, it opens in a floating PiP player (draggable, minimizable) so browsing continues while it plays.
-5. **Submit a meme** — signed-in users paste a link, pick an existing character, add tags. Goes to a moderation queue.
+5. **Submit a meme** — signed-in users paste a link, pick an existing character, and add tags. Tags apply to both the meme and the character: a submitter can suggest character tags/nicknames (e.g. "angry boss", "hera pheri", "babu bhaiya") right from the submit form, so admins don't have to enrich every character by hand. Goes to a moderation queue.
 6. **Auth** — email/password + Google sign-in, with user profiles (username, avatar).
 7. **Admin panel** — create/edit characters (only admins can), approve or reject submitted memes, merge duplicates.
 
