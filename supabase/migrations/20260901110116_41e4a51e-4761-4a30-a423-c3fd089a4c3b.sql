@@ -1,0 +1,11 @@
+REVOKE EXECUTE ON FUNCTION public.handle_new_user() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.refresh_character_search_text(uuid) FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.characters_search_text_trigger() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.alias_touch_character() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.memes_search_text_trigger() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.sync_character_meme_count() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.sync_interaction_counts() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.sync_follow_counts() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.recompute_popularity() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.has_role(uuid, public.app_role) FROM anon, public;
+GRANT EXECUTE ON FUNCTION public.has_role(uuid, public.app_role) TO authenticated;
